@@ -1,1 +1,2 @@
-# 42-irc-new
+# ft_irc
+Internet Relay Chat Project
