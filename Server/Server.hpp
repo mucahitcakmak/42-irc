@@ -43,7 +43,6 @@ class Server
 		std::vector<Client> 		getClients();
 
 		void						executeCommand(int clientsockt);
-
 		void						User(std::string username, int id);
 		void						Pass(std::string pass, int id);
 		void						Nick(std::string nickname, int id);

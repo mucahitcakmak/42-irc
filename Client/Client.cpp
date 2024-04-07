@@ -32,4 +32,6 @@ void        Client::setPass(std::string pass) { this->pass = pass; }
 
 void        Client::setLoggedIn(int sign) { this->logged_in = sign; }
 
+void        Client::print(std::string str) { send(this->socket, str.c_str(), str.size(), 0); }
+
 Client::~Client() { }

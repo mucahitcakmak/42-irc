@@ -17,10 +17,10 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) 
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) .vscode
 
 re: fclean all
 

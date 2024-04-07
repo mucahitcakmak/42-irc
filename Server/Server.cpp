@@ -73,7 +73,7 @@ void Server::executeCommand(int id)
 		{
 			if ((cmds[i] == commands[j]) && (j+1 <= commands.size()))
 			{
-				(this->*tfun[i])(commands[j+1], id);
+				(this->*tfun[i])(commands[j + 1], id); // NICK n_museker
 
 			}
             else if (!(j+1 <= commands.size()))
@@ -131,6 +131,9 @@ Server::Server(int port, std::string arg_pass)
                 {
                     clients[i].setLoggedIn(1);
                     std::cout << "Successfully logged into the system!!" << std::endl;
+					// clients[i].print(":" + )
+// client.print(":" + client.getRealIp() + " 001 " + client.getNick() + " : Welcome to the Internet Relay Network " \
+        + client.getNick() + "!" + this->commands[1] + client.getUsername() + "@" + client.getRealIp() + "\r\n");
                 }
 				if (valread > 0)
 				{
