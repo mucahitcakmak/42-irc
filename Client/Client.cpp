@@ -12,7 +12,7 @@ Client::Client()
 
 int         Client::getSocket() { return this->socket; }
 
-int			Client::getLoggedIn() { return this->logged_in; }
+bool		Client::getLoggedIn() { return this->logged_in; }
 
 std::string Client::getIp(){ return this->ip; }
 
@@ -30,7 +30,9 @@ void        Client::setNickName(std::string nick_name) { this->nick_name = nick_
 
 void        Client::setPass(std::string pass) { this->pass = pass; }
 
-void        Client::setLoggedIn(int sign) { this->logged_in = sign; }
+void        Client::setLoggedIn(bool sign) { this->logged_in = sign; }
+
+void		Client::setIp(std::string ip) { this->ip = ip;}
 
 void        Client::print(std::string str) { send(this->socket, str.c_str(), str.size(), 0); }
 
