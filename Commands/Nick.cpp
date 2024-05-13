@@ -1,7 +1,9 @@
 #include "../Server/Server.hpp"
 
-void Server::Nick(std::string nickname, int id)
+void Server::Nick(int index, int id)
 {
-    clients[id].setNickName(nickname);
-    std::cout << "clients vectorune ait "<< id << ". indexteki, soket numarasi "<< clients[id].getSocket() << " olan clientin nickname'i " << nickname << " olarak set." << std::endl;
+    if (commands[index + 1].empty() == 0)
+        clients[id].setNickName(commands[index + 1]);
+    else
+		std::cout << "The format is 'NICK nickname'" << std::endl;
 }

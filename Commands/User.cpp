@@ -1,7 +1,13 @@
 #include "../Server/Server.hpp"
 
-void Server::User(std::string username, int id)
+// bir client disconnect attiginda bilgilerinin temizlenmesi lazim
+void Server::User(int index, int id)
 {
-    clients[id].setUserName(username);
-    std::cout << "clients vectorune ait "<< id << ". indexteki, soket numarasi "<< clients[id].getSocket() << " olan clientin Username'i " << username << " olarak set." << std::endl;
+	if (commands[index + 1].empty() == 0 && commands[index + 3].empty() == 0)
+	{
+        clients[id].setUserName(commands[index + 1]);
+        clients[id].setIp(commands[index + 3]);
+	}
+    else
+		std::cout << "The format is 'USER username 0 realname'" << std::endl;
 }
