@@ -12,18 +12,27 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sstream>
+#include <string.h>
 
-# define SOCKET_ERROR -1
-# define PASS "PASS"
-# define JOIN "JOIN"
-# define USER "USER"
-# define NICK "NICK"
+# define SOCKET_ERROR 	-1
+# define PASS			"PASS"
+# define JOIN			"JOIN"
+# define USER			"USER"
+# define WHO			"WHO"
+# define QUIT			"QUIT"
+# define PART			"PART"
+# define TOPIC			"TOPIC"
+# define LIST			"LIST"
+# define NICK			"NICK"
+# define JOIN 			"JOIN"
+# define PRIVMSG		"PRIVMSG"
+# define KICK			"KICK"
 
 class Server
 {
     private:
 	    struct sockaddr_in			server_address;
-		typedef void(Server::*fpoint)(std::string, int);
+		typedef void(Server::*fpoint)(int, int);
         std::vector<Channel>		channels;
         std::vector<Client>			clients;
         std::vector<std::string>	commands;
@@ -42,11 +51,24 @@ class Server
 		std::vector<std::string>	getCommands();
 		std::vector<Client> 		getClients();
 
+		void    					Part(int index, int id);
+		void    					Topic(int index, int id);
+		void    					Quit(int index, int id);
 		void						executeCommand(int clientsockt);
-		void						User(std::string username, int id);
-		void						Pass(std::string pass, int id);
-		void						Nick(std::string nickname, int id);
+		void						User(int index, int id);
+		void						Pass(int index, int id);
+		void						Nick(int index, int id);
+		void						Join(int index, int id);
+		void						Who(int index, int id);
+		void						List(int index, int id);
+		void						Kick(int index, int id);
+		void 						excWho(int id);
+		void						Privmsg(int index, int id);
+		void    					Part2(int index, int id, Channel& channel, int flag);
 
+		int							isInChannel(std::vector<Client> c_clients, std::string name);
+		int							getChannelIndex(std::string name);
+		int							getClientIndex(std::string name);
 		int							getServerFd();
 		int							getAcceptFd();
 		int							getPort();
